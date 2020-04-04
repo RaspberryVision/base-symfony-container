@@ -1,4 +1,4 @@
-FROM php:7.3.13-apache
+FROM php:7.4.4-apache
 LABEL maintainer="kontakt@raspberryvision.pl"
 
 RUN apt-get update \
