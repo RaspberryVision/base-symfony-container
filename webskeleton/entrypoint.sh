@@ -11,5 +11,9 @@ ServerName localhost \
 # INSTALL COMPOSER DEP #
 composer update
 
+# COMPILE FRONT ASSETS #
+yarn install
+yarn encore dev
+
 # RUN APACHE #
 apache2-foreground
