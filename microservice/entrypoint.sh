@@ -9,7 +9,7 @@ ServerName localhost \
 ' /etc/apache2/apache2.conf
 
 # INSTALL COMPOSER DEP #
-composer update
+composer install
 
 # RUN APACHE #
 apache2-foreground
