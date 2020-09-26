@@ -5,10 +5,13 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends vim curl debconf subversion git apt-transport-https apt-utils \
     build-essential locales acl mailutils wget nodejs zip unzip \
     gnupg gnupg1 gnupg2 libxslt-dev zlib1g-dev libpng-dev libjpeg-dev libwebp-dev libjpeg62-turbo-dev libpng-dev \
-    libxpm-dev libfreetype6-dev libmagickwand-dev
+    libxpm-dev libfreetype6-dev libmagickwand-dev librabbitmq-dev
 
 ### INSTALL AND ENABLE DOCKER PHP EXTENSIONS ###
 RUN docker-php-ext-install mysqli pdo pdo_mysql gd bcmath intl sockets
+
+### INSTALL AMQP ###
+RUN pecl install -o -f amqp && docker-php-ext-enable amqp
 
 ### CHANGE ROOT DIRECTORY ###
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
