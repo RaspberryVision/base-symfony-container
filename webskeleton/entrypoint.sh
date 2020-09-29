@@ -3,7 +3,6 @@
 # Enable mod_rewrite for Apache2
 a2enmod proxy_fcgi ssl rewrite proxy proxy_balancer proxy_http proxy_ajp
 
-
 # Apache config for localhost
 sed -i '/Global configuration/a \
 ServerName localhost \
@@ -15,6 +14,9 @@ composer install
 # COMPILE FRONT ASSETS #
 yarn install
 yarn encore dev
+
+# RUN EVENTS HANDLERS CONSUMER
+nohup php bin/console messenger:consume async &
 
 # RUN APACHE #
 apache2-foreground
