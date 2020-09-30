@@ -31,5 +31,9 @@ RUN	echo "deb https://deb.nodesource.com/node_9.x jessie main" >> /etc/apt/sourc
 RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
 	mv composer.phar /usr/local/bin/composer
 
+### CONFIGURE HEADERS ###
+RUN a2enmod headers \
+    && sed -ri -e 's/^([ \t]*)(<\/VirtualHost>)/\1\tHeader set Access-Control-Allow-Origin "*"\n\1\2/g' /etc/apache2/sites-available/*.conf
+
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT /entrypoint.sh
