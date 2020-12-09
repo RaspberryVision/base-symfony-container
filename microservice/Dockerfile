@@ -4,10 +4,13 @@ LABEL maintainer="kontakt@raspberryvision.pl"
 RUN apt-get update \
     && apt-get install -y --no-install-recommends vim curl debconf subversion git apt-transport-https apt-utils \
     build-essential locales acl mailutils wget nodejs zip unzip \
-    gnupg gnupg1 gnupg2 libxslt-dev
+    gnupg gnupg1 gnupg2 libxslt-dev zlib1g-dev librabbitmq-dev libpng-dev
 
 ### INSTALL AND ENABLE DOCKER PHP EXTENSIONS ###
-RUN docker-php-ext-install xsl
+RUN docker-php-ext-install mysqli pdo pdo_mysql gd bcmath intl sockets xsl
+
+### INSTALL AMQP ###
+RUN pecl install -o -f amqp && docker-php-ext-enable amqp
 
 ### CHANGE ROOT DIRECTORY ###
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
