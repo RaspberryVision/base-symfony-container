@@ -8,7 +8,7 @@ RUN apt-get update \
     libxpm-dev libfreetype6-dev libmagickwand-dev librabbitmq-dev
 
 ### INSTALL AND ENABLE DOCKER PHP EXTENSIONS ###
-RUN docker-php-ext-install mysqli pdo pdo_mysql gd bcmath intl sockets
+RUN docker-php-ext-install mysqli pdo pdo_mysql gd bcmath intl sockets xsl
 
 ### INSTALL AMQP ###
 RUN pecl install -o -f amqp && docker-php-ext-enable amqp
