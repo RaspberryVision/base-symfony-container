@@ -24,7 +24,7 @@ yarn install
 yarn encore dev
 
 # RUN EVENTS HANDLERS CONSUMER
-nohup php bin/console messenger:consume async &
+nohup php bin/console messenger:consume async_priority_high &
 
 # RUN APACHE #
 apache2-foreground
